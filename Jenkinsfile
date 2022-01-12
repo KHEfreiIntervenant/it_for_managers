@@ -9,7 +9,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          docker build . -t shakyshane/cra-docker
+          docker build .
         }
       }
     }/*
