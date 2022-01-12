@@ -10,6 +10,6 @@ services:
       - '.:/app'
       - '/app/node_modules'
     ports:
-      - 3001:8081
+      - 8081:8081
     environment:
       - CHOKIDAR_USEPOLLING=true

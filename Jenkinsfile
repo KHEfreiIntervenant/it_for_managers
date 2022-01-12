@@ -12,21 +12,28 @@ pipeline {
 
     //   }
     // }
-    stage('Building image') {
-      steps{
-          sh 'docker build . -t mycustomimage'
-        // script {
-        //   dockerImage = docker.build imagename
-        // }
-      }
-    }
-    stage('Running image') {
+    // stage('Building image') {
+    //   steps{
+    //       sh 'docker build . -t mycustomimage'
+    //     // script {
+    //     //   dockerImage = docker.build imagename
+    //     // }
+    //   }
+    // }
+    stage('Building and Running image') {
       steps{
           sh 'docker-compose up -d --build'
         //   sh 'docker run -p 3001:8083'
         // script {
         //   dockerImage = docker.build imagename
         // }
+      }
+    }
+    
+    stage('Cleaning after images') {
+      steps{
+          sh 'docker-compose down'
+          sh 'docker rm -f $(docker ps -aq)'
       }
     }
     // stage('Deploy Image') {
