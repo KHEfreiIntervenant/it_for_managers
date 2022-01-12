@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Running image') {
       steps{
-          sh 'docker run mycustomimage'
+          sh 'docker run -p 3001:8083'
         // script {
         //   dockerImage = docker.build imagename
         // }
