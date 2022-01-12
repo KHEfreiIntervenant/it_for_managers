@@ -22,7 +22,8 @@ pipeline {
     }
     stage('Running image') {
       steps{
-          sh 'docker run -p 3001:8083'
+          sh 'docker-compose up -d --build'
+        //   sh 'docker run -p 3001:8083'
         // script {
         //   dockerImage = docker.build imagename
         // }
