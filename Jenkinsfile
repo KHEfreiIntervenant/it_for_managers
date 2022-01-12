@@ -1,29 +1,36 @@
 pipeline {
-    agent {
-    docker {
-        image 'node:6-alpine'
-        args '-p 3000:3000'
+  environment {
+    registry = "gustavoapolinario/docker-test"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/gustavoapolinario/microservices-node-example-todo-frontend.git'
+      }
     }
-    }
-    environment {
-    CI = 'true'
-    HOME = '.'
-    npm_config_cache = 'npm-cache'
-    }
-    stages {
-    stage('Install Packages') {
-        steps {
-        sh 'npm install'
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
+      }
     }
-    stage('Test and Build') {
-        parallel {
-        stage('Run Tests') {
-            steps {
-            sh 'npm run test'
-            }
-        } 
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
         }
+      }
     }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
     }
+  }
 }
