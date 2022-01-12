@@ -14,9 +14,18 @@ pipeline {
     // }
     stage('Building image') {
       steps{
-        script {
-          dockerImage = docker.build imagename
-        }
+          sh 'docker build . -t mycustomimage'
+        // script {
+        //   dockerImage = docker.build imagename
+        // }
+      }
+    }
+    stage('Running image') {
+      steps{
+          sh 'docker run mycustomimage'
+        // script {
+        //   dockerImage = docker.build imagename
+        // }
       }
     }
     // stage('Deploy Image') {
