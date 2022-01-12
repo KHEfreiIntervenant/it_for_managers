@@ -36,8 +36,8 @@ pipeline {
         //   sh 'npm install -g yarn'
         //   sh 'yarn add -D cypress @testing-library/cypress'
         // sh 'npm install react-scripts'
-        // sh 'npm test start'
-          sh 'unset DISPLAY && DEBUG=cypress:* yarn run cypress open'
+        sh 'npx cypress run'
+        //   sh 'unset DISPLAY && DEBUG=cypress:* yarn run cypress open'
         //   sh 'docker run -p 3001:8083'
         // script {
         //   dockerImage = docker.build imagename
