@@ -13,3 +13,15 @@ services:
       - "127.0.0.1:8081:8081"
     environment:
       - CHOKIDAR_USEPOLLING=true
+  cypress:
+    # the Docker image to use from https://github.com/cypress-io/cypress-docker-images
+    image: "cypress/included:3.2.0"
+    depends_on:
+      - sample
+    environment:
+      # pass base url to test pointing at the web application
+      - CYPRESS_baseUrl=http://127.0.0.1:8081
+    # share the current folder as volume to avoid copying
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e

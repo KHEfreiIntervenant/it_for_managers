@@ -30,6 +30,17 @@ pipeline {
       }
     }
 
+    stage('Run tests') {
+      steps{
+          sh 'yarn add -D cypress @testing-library/cypress'
+          sh 'yarn run cypress open'
+        //   sh 'docker run -p 3001:8083'
+        // script {
+        //   dockerImage = docker.build imagename
+        // }
+      }
+    }
+
     // stage('Cleaning after images') {
     //   steps{
     //       sh 'docker-compose down'
