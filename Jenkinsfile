@@ -32,6 +32,7 @@ pipeline {
 
     stage('Run tests') {
       steps{
+          sh 'npm install -g yarn'
           sh 'yarn add -D cypress @testing-library/cypress'
           sh 'yarn run cypress open'
         //   sh 'docker run -p 3001:8083'
