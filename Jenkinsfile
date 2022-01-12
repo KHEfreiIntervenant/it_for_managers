@@ -1,9 +1,4 @@
 pipeline {
-  environment {
-    registry = "gustavoapolinario/docker-test"
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-  }
   agent any
   stages {
     stage('Cloning Git') {
@@ -14,10 +9,10 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          docker build . -t shakyshane/cra-docker
         }
       }
-    }
+    }/*
     stage('Deploy Image') {
       steps{
         script {
@@ -31,6 +26,6 @@ pipeline {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
-    }
+    }*/
   }
 }
