@@ -10,6 +10,6 @@ services:
       - '.:/app'
       - '/app/node_modules'
     ports:
-      - "localhost:8081:8081"
+      - "127.0.0.1:8081:8081"
     environment:
       - CHOKIDAR_USEPOLLING=true
