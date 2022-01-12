@@ -22,7 +22,7 @@ pipeline {
     // }
     stage('Building and Running image') {
       steps{
-          sh 'sudo docker rm -vf $(docker ps -aq)'
+          sh 'docker rm -vf $(docker ps -aq)'
           sh 'docker-compose up -d --build'
         //   sh 'docker run -p 3001:8083'
         // script {
