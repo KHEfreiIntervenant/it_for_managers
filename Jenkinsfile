@@ -22,7 +22,6 @@ pipeline {
     // }
     stage('Building and Running image') {
       steps{
-          sh 'docker rm -vf $(docker ps -aq)'
           sh 'docker-compose up -d --build'
         //   sh 'docker run -p 3001:8083'
         // script {
@@ -36,7 +35,7 @@ pipeline {
         //   sh 'npm install -g yarn'
         //   sh 'yarn add -D cypress @testing-library/cypress'
         // sh 'npm install react-scripts'
-        sh 'npx cypress run'
+        // sh 'npx cypress run'
         //   sh 'unset DISPLAY && DEBUG=cypress:* yarn run cypress open'
         //   sh 'docker run -p 3001:8083'
         // script {
