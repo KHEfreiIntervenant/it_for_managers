@@ -32,7 +32,7 @@ pipeline {
 
     stage('Run tests') {
       steps{
-        //   sh 'npm install -g yarn'
+          sh 'npm test'
         //   sh 'yarn add -D cypress @testing-library/cypress'
         // sh 'npm install react-scripts'
         // sh 'npx cypress run'

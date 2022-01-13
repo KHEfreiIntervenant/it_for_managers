@@ -12,6 +12,7 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm install -g --silent
 RUN npm install react-scripts@3.4.1 -g --silent
+RUN npm install jest -g --silent
 
 # add app
 COPY . ./app
